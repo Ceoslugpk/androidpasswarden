@@ -77,7 +77,7 @@ class AccountSecurityViewModel @Inject constructor(
             vaultTimeoutAction = settingsRepository.vaultTimeoutAction,
             vaultTimeoutPolicyMinutes = null,
             vaultTimeoutPolicyAction = null,
-            shouldShowUnlockActionCard = false,
+            shouldShowUnlockActionCard = true,
             removeUnlockWithPinPolicyEnabled = false,
         )
     },

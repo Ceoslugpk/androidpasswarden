@@ -45,6 +45,9 @@ fun SettingsScreen(
     onNavigateToAccountSecurity: () -> Unit,
     onNavigateToAppearance: () -> Unit,
     onNavigateToAutoFill: () -> Unit,
+    onNavigateToAuthenticator: () -> Unit,
+    onNavigateToOrganizations: () -> Unit,
+    onNavigateToDigitalLegacy: () -> Unit,
     onNavigateToOther: () -> Unit,
     onNavigateToVault: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel(),
@@ -56,6 +59,9 @@ fun SettingsScreen(
             SettingsEvent.NavigateAbout -> onNavigateToAbout()
             SettingsEvent.NavigateAccountSecurity -> onNavigateToAccountSecurity.invoke()
             SettingsEvent.NavigateAppearance -> onNavigateToAppearance()
+            SettingsEvent.NavigateAuthenticator -> onNavigateToAuthenticator()
+            SettingsEvent.NavigateOrganizations -> onNavigateToOrganizations()
+            SettingsEvent.NavigateDigitalLegacy -> onNavigateToDigitalLegacy()
             SettingsEvent.NavigateAutoFill -> onNavigateToAutoFill()
             SettingsEvent.NavigateOther -> onNavigateToOther()
             SettingsEvent.NavigateVault -> onNavigateToVault()

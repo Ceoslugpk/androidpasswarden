@@ -23,7 +23,18 @@ import com.x8bit.bitwarden.ui.platform.feature.settings.autofill.blockautofill.b
 import com.x8bit.bitwarden.ui.platform.feature.settings.autofill.blockautofill.navigateToBlockAutoFillScreen
 import com.x8bit.bitwarden.ui.platform.feature.settings.autofill.navigateToAutoFill
 import com.x8bit.bitwarden.ui.platform.feature.settings.autofill.privilegedapps.list.navigateToPrivilegedAppsList
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.x8bit.bitwarden.ui.platform.components.dialog.BitwardenTwoButtonDialog
 import com.x8bit.bitwarden.ui.platform.feature.settings.autofill.privilegedapps.list.privilegedAppsListDestination
+import com.x8bit.bitwarden.ui.platform.feature.settings.digitallegacy.DigitalLegacyScreen
 import com.x8bit.bitwarden.ui.platform.feature.settings.flightrecorder.flightRecorderDestination
 import com.x8bit.bitwarden.ui.platform.feature.settings.flightrecorder.navigateToFlightRecorder
 import com.x8bit.bitwarden.ui.platform.feature.settings.flightrecorder.recordedLogs.navigateToRecordedLogs
@@ -120,11 +131,46 @@ fun NavGraphBuilder.settingsGraph(
         startDestination = SettingsRoute.Standard,
     ) {
         composableWithRootPushTransitions<SettingsRoute.Standard> {
+        val context = LocalContext.current
+        var showDialog by remember { mutableStateOf(false) }
+
+        if (showDialog) {
+            BitwardenTwoButtonDialog(
+                title = stringResource(id = BitwardenString.authenticator_app_not_installed_title),
+                message = stringResource(id = BitwardenString.authenticator_app_not_installed_message),
+                onConfirmClick = {
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse("https://play.google.com/store/apps/details?id=com.bitwarden.authenticator")
+                        setPackage("com.android.vending")
+                    }
+                    context.startActivity(intent)
+                    showDialog = false
+                },
+                onDismissClick = { showDialog = false },
+                onDismissRequest = { showDialog = false },
+            )
+        }
+
             SettingsScreen(
                 onNavigateBack = {},
                 onNavigateToAbout = { navController.navigateToAbout(isPreAuth = false) },
                 onNavigateToAccountSecurity = { navController.navigateToAccountSecurity() },
                 onNavigateToAppearance = { navController.navigateToAppearance(isPreAuth = false) },
+            onNavigateToAuthenticator = {
+                val intent = context.packageManager.getLaunchIntentForPackage("com.bitwarden.authenticator")
+                if (intent != null) {
+                    context.startActivity(intent)
+                } else {
+                    showDialog = true
+                }
+            },
+            onNavigateToOrganizations = {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse("https://vault.bitwarden.com/#/organizations")
+                }
+                context.startActivity(intent)
+            },
+            onNavigateToDigitalLegacy = { navController.navigateToDigitalLegacy() },
                 onNavigateToAutoFill = { navController.navigateToAutoFill() },
                 onNavigateToOther = { navController.navigateToOther(isPreAuth = false) },
                 onNavigateToVault = { navController.navigateToVaultSettings() },
@@ -165,6 +211,7 @@ fun NavGraphBuilder.settingsGraph(
         )
         blockAutoFillDestination(onNavigateBack = { navController.popBackStack() })
         privilegedAppsListDestination(onNavigateBack = { navController.popBackStack() })
+        digitalLegacyDestination(onNavigateBack = { navController.popBackStack() })
     }
 }
 
@@ -239,4 +286,19 @@ fun NavController.navigateToSettingsGraphRoot() {
  */
 fun NavController.navigateToPreAuthSettings(navOptions: NavOptions? = null) {
     this.navigate(route = SettingsRoute.PreAuth, navOptions = navOptions)
+}
+
+@Serializable
+private data object DigitalLegacyRoute
+
+private fun NavGraphBuilder.digitalLegacyDestination(
+    onNavigateBack: () -> Unit,
+) {
+    composableWithSlideTransitions<DigitalLegacyRoute> {
+        DigitalLegacyScreen(onNavigateBack = onNavigateBack)
+    }
+}
+
+private fun NavController.navigateToDigitalLegacy(navOptions: NavOptions? = null) {
+    navigate(DigitalLegacyRoute, navOptions)
 }

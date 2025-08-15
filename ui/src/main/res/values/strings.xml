@@ -132,6 +132,7 @@
     <string name="options">Options</string>
     <string name="other">Other</string>
     <string name="password_generator">Password generator</string>
+    <string name="password_health">Password Health</string>
     <string name="password_hint">Password hint</string>
     <string name="password_hint_alert">We\'ve sent you an email with your master password hint.</string>
     <string name="password_override_alert">Are you sure you want to overwrite the current password?</string>
@@ -649,6 +650,13 @@ Do you want to switch to this account?</string>
     <string name="logging_in_on_with_colon">Logging in on:</string>
     <string name="vault">Vault</string>
     <string name="appearance">Appearance</string>
+    <string name="authenticator">Authenticator</string>
+    <string name="organizations">Organizations</string>
+    <string name="digital_legacy">Digital Legacy</string>
+    <string name="digital_legacy_description">Designate a trusted contact to access your vault in case of an emergency.</string>
+    <string name="trusted_contact_email">Trusted contact\'s email</string>
+    <string name="authenticator_app_not_installed_title">Authenticator App Not Installed</string>
+    <string name="authenticator_app_not_installed_message">To use this feature, you need to install the Bitwarden Authenticator app. Would you like to install it now?</string>
     <string name="account_security">Account security</string>
     <string name="bitwarden_help_center">Bitwarden help center</string>
     <string name="sync_now">Sync now</string>

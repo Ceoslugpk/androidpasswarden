@@ -128,7 +128,7 @@ fun SettingsScreen(
 
             SettingsEvent.NavigateToBitwardenPlayStoreListing -> {
                 intentManager.launchUri(
-                    "https://play.google.com/store/apps/details?id=com.x8bit.bitwarden".toUri(),
+                    "https://play.google.com/store/apps/details?id=com.x8bit.passdevil".toUri(),
                 )
             }
         }

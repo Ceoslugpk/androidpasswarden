@@ -99,6 +99,7 @@ class VaultUnlockedNavBarViewModel @Inject constructor(
     override fun handleAction(action: VaultUnlockedNavBarAction) {
         when (action) {
             VaultUnlockedNavBarAction.GeneratorTabClick -> handleGeneratorTabClicked()
+            VaultUnlockedNavBarAction.PasswordHealthTabClick -> handlePasswordHealthTabClicked()
             VaultUnlockedNavBarAction.SendTabClick -> handleSendTabClicked()
             VaultUnlockedNavBarAction.SettingsTabClick -> handleSettingsTabClicked()
             VaultUnlockedNavBarAction.VaultTabClick -> handleVaultTabClicked()
@@ -123,6 +124,10 @@ class VaultUnlockedNavBarViewModel @Inject constructor(
      */
     private fun handleGeneratorTabClicked() {
         sendEvent(VaultUnlockedNavBarEvent.NavigateToGeneratorScreen)
+    }
+
+    private fun handlePasswordHealthTabClicked() {
+        sendEvent(NavigateToPasswordHealthScreen)
     }
 
     /**
@@ -212,6 +217,11 @@ sealed class VaultUnlockedNavBarAction {
     data object GeneratorTabClick : VaultUnlockedNavBarAction()
 
     /**
+     * User has clicked on the password health tab.
+     */
+    data object PasswordHealthTabClick : VaultUnlockedNavBarAction()
+
+    /**
      * Click Send tab.
      */
     data object SendTabClick : VaultUnlockedNavBarAction()
@@ -291,6 +301,11 @@ sealed class VaultUnlockedNavBarEvent {
      * outside of normal lifecycle aware events and should not be ignored by filter.
      */
     sealed class Shortcut : VaultUnlockedNavBarEvent(), BackgroundEvent {
+    /**
+     * Navigate to the password health screen.
+     */
+    data object NavigateToPasswordHealthScreen : VaultUnlockedNavBarEvent()
+
         /**
          * Navigate to the Generator screen via a shortcut.
          */

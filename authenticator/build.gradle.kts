@@ -80,7 +80,7 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".dev"
-            manifestPlaceholders["targetBitwardenAppId"] = "com.x8bit.bitwarden.dev"
+            manifestPlaceholders["targetBitwardenAppId"] = "com.x8bit.passdevil.dev"
             buildConfigField(
                 type = "com.bitwarden.authenticatorbridge.manager.model.AuthenticatorBridgeConnectionType",
                 name = "AUTHENTICATOR_BRIDGE_CONNECTION_TYPE",
@@ -93,7 +93,7 @@ android {
         }
 
         release {
-            manifestPlaceholders["targetBitwardenAppId"] = "com.x8bit.bitwarden"
+            manifestPlaceholders["targetBitwardenAppId"] = "com.x8bit.passdevil"
             buildConfigField(
                 type = "com.bitwarden.authenticatorbridge.manager.model.AuthenticatorBridgeConnectionType",
                 name = "AUTHENTICATOR_BRIDGE_CONNECTION_TYPE",

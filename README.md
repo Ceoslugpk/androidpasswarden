@@ -233,6 +233,12 @@ The following is a list of all third-party dependencies included as part of the 
     - Purpose: Barcode scanning and generation.
     - License: Apache 2.0
 
+## Secure Sharing (Organizations)
+
+This app allows you to share your vault items with others by using an organization. You can create and manage your organizations from the Bitwarden web vault.
+
+To access your organizations, go to **Settings > Organizations**.
+
 The following is an additional list of third-party dependencies that are only included in the non-F-Droid build variants of the application.
 
 - **Firebase Cloud Messaging**

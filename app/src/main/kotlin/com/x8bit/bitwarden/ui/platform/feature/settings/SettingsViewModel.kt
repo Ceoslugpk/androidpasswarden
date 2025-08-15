@@ -106,6 +106,18 @@ class SettingsViewModel @Inject constructor(
                 sendEvent(SettingsEvent.NavigateAppearance)
             }
 
+            Settings.AUTHENTICATOR -> {
+                sendEvent(SettingsEvent.NavigateAuthenticator)
+            }
+
+            Settings.ORGANIZATIONS -> {
+                sendEvent(SettingsEvent.NavigateOrganizations)
+            }
+
+            Settings.DIGITAL_LEGACY -> {
+                sendEvent(SettingsEvent.NavigateDigitalLegacy)
+            }
+
             Settings.OTHER -> {
                 sendEvent(SettingsEvent.NavigateOther)
             }
@@ -161,6 +173,21 @@ sealed class SettingsEvent {
      * Navigate to the about screen.
      */
     data object NavigateAbout : SettingsEvent()
+
+    /**
+     * Navigate to the authenticator screen.
+     */
+    data object NavigateAuthenticator : SettingsEvent()
+
+    /**
+     * Navigate to the organizations screen.
+     */
+    data object NavigateOrganizations : SettingsEvent()
+
+    /**
+     * Navigate to the digital legacy screen.
+     */
+    data object NavigateDigitalLegacy : SettingsEvent()
 
     /**
      * Navigate to the account security screen.
@@ -255,6 +282,21 @@ enum class Settings(
         vectorIconRes = BitwardenDrawable.ic_paintbrush,
         testTag = "AppearanceSettingsButton",
     ),
+    AUTHENTICATOR(
+        text = BitwardenString.authenticator.asText(),
+        vectorIconRes = BitwardenDrawable.ic_shield_check,
+        testTag = "AuthenticatorSettingsButton",
+    ),
+    ORGANIZATIONS(
+        text = BitwardenString.organizations.asText(),
+        vectorIconRes = BitwardenDrawable.ic_folder,
+        testTag = "OrganizationsSettingsButton",
+    ),
+    DIGITAL_LEGACY(
+        text = BitwardenString.digital_legacy.asText(),
+        vectorIconRes = BitwardenDrawable.ic_file_text,
+        testTag = "DigitalLegacySettingsButton",
+    ),
     OTHER(
         text = BitwardenString.other.asText(),
         vectorIconRes = BitwardenDrawable.ic_filter,
@@ -264,5 +306,10 @@ enum class Settings(
         text = BitwardenString.about.asText(),
         vectorIconRes = BitwardenDrawable.ic_info_circle,
         testTag = "AboutSettingsButton",
+    ),
+    AUTHENTICATOR(
+        text = BitwardenString.authenticator.asText(),
+        vectorIconRes = BitwardenDrawable.ic_shield_check,
+        testTag = "AuthenticatorSettingsButton",
     ),
 }
