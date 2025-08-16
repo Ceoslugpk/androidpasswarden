@@ -197,7 +197,7 @@ platform :android do
     firebase_app_distribution(
       app: "1:64530857057:android:f8d67b786db1b844",
       android_artifact_type: "APK",
-      android_artifact_path: "app/build/outputs/apk/standard/release/com.x8bit.passdevil.apk",
+      android_artifact_path: "app/build/outputs/apk/standard/release/com.x8bit.bitwarden.apk",
       service_credentials_file: options[:service_credentials_file],
       groups: "internal-prod-group, livefront",
       release_notes: "#{releaseNotes}",
@@ -213,7 +213,7 @@ platform :android do
     firebase_app_distribution(
       app: "1:64530857057:android:54c1ae56b269b959887e20",
       android_artifact_type: "APK",
-      android_artifact_path: "app/build/outputs/apk/standard/beta/com.x8bit.passdevil.beta.apk",
+      android_artifact_path: "app/build/outputs/apk/standard/beta/com.x8bit.bitwarden.beta.apk",
       service_credentials_file: options[:service_credentials_file],
       groups: "internal-prod-group, livefront",
       release_notes: "#{releaseNotes}",
@@ -229,7 +229,7 @@ platform :android do
     firebase_app_distribution(
       app: "1:439897860529:android:b143708734b99c0e3fb590",
       android_artifact_type: "APK",
-      android_artifact_path: "app/build/outputs/apk/fdroid/release/com.x8bit.passdevil-fdroid.apk",
+      android_artifact_path: "app/build/outputs/apk/fdroid/release/com.x8bit.bitwarden-fdroid.apk",
       service_credentials_file: options[:service_credentials_file],
       groups: "internal-prod-group, livefront",
       release_notes: "#{releaseNotes}"
@@ -239,22 +239,22 @@ platform :android do
   desc "Publish Play Store Beta bundle to Google Play Store"
   lane :publishBetaToPlayStore do
     upload_to_play_store(
-      package_name: "com.x8bit.passdevil.beta",
+      package_name: "com.x8bit.bitwarden.beta",
       track: "internal",
       release_status: "completed",
       rollout: "1",
-      aab: "app/build/outputs/bundle/standardBeta/com.x8bit.passdevil.beta.aab",
+      aab: "app/build/outputs/bundle/standardBeta/com.x8bit.bitwarden.beta.aab",
     )
   end
 
   desc "Publish Play Store Beta bundle to Google Play Store"
   lane :publishProdToPlayStore do
     upload_to_play_store(
-      package_name: "com.x8bit.passdevil",
+      package_name: "com.x8bit.bitwarden",
       track: "internal",
       release_status: "completed",
       rollout: "1",
-      aab: "app/build/outputs/bundle/standardRelease/com.x8bit.passdevil.aab",
+      aab: "app/build/outputs/bundle/standardRelease/com.x8bit.bitwarden.aab",
     )
   end
 
@@ -274,7 +274,7 @@ platform :android do
     track = options[:track]
     # Hardcoding paths for now, it will simplify transitioning to the new build .env files
     case package_name
-    when "com.x8bit.passdevil", "com.x8bit.passdevil.beta"
+    when "com.x8bit.bitwarden", "com.x8bit.bitwarden.beta"
       json_key = "secrets/play_creds.json"
     when "com.bitwarden.authenticator"
       json_key = "secrets/authenticator_play_store-creds.json"
@@ -387,7 +387,7 @@ platform :android do
     pw_manager_locales = ["ca", "cs-CZ", "da-DK", "de-DE", "en-US", "es-ES", "et", "fr-FR", "hr", "hu-HU", "id", "it-IT", "iw-IL", "ja-JP", "nl-NL", "pl-PL", "pt-BR", "pt-PT", "ro", "ru-RU", "sk", "sv-SE", "tr-TR", "uk", "vi", "zh-CN", "zh-TW"]
     if options[:packageName] == "com.bitwarden.authenticator"
       locales = auth_locales
-    elsif options[:packageName] == "com.x8bit.passdevil" || options[:packageName] == "com.x8bit.passdevil.beta"
+    elsif options[:packageName] == "com.x8bit.bitwarden" || options[:packageName] == "com.x8bit.bitwarden.beta"
       locales = pw_manager_locales
     else
       UI.important "Unexpected package name: #{options[:packageName]}, using default locales"

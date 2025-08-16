@@ -229,6 +229,7 @@ fun NavGraphBuilder.preAuthSettingsDestinations(
             onNavigateToOther = { navController.navigateToOther(isPreAuth = true) },
             onNavigateToAccountSecurity = { /* no-op */ },
             onNavigateToAutoFill = { /* no-op */ },
+            onNavigateToAuthenticator = { /* no-op */ },
             onNavigateToVault = { /* no-op */ },
         )
     }

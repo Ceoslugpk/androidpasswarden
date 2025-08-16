@@ -11,8 +11,6 @@ import com.x8bit.bitwarden.ui.tools.feature.generator.GeneratorGraphRoute
 import com.x8bit.bitwarden.ui.tools.feature.generator.GeneratorRoute
 import com.x8bit.bitwarden.ui.tools.feature.send.SendGraphRoute
 import com.x8bit.bitwarden.ui.tools.feature.send.SendRoute
-import com.x8bit.bitwarden.ui.tools.feature.passwordhealth.PasswordHealthGraphRoute
-import com.x8bit.bitwarden.ui.tools.feature.passwordhealth.PasswordHealthRoute
 import com.x8bit.bitwarden.ui.vault.feature.vault.VaultGraphRoute
 import com.x8bit.bitwarden.ui.vault.feature.vault.VaultRoute
 import kotlinx.parcelize.Parcelize
@@ -55,21 +53,6 @@ sealed class VaultUnlockedNavBarTab : NavigationItem, Parcelable {
         override val graphRoute get() = SendGraphRoute.toObjectNavigationRoute()
         override val startDestinationRoute get() = SendRoute.toObjectNavigationRoute()
         override val testTag get() = "SendTab"
-        override val notificationCount get() = 0
-    }
-
-    /**
-     * Show the Password Health screen.
-     */
-    @Parcelize
-    data object PasswordHealth : VaultUnlockedNavBarTab() {
-        override val iconResSelected get() = BitwardenDrawable.ic_shield_check
-        override val iconRes get() = BitwardenDrawable.ic_shield_check
-        override val labelRes get() = BitwardenString.password_health
-        override val contentDescriptionRes get() = BitwardenString.password_health
-        override val graphRoute get() = PasswordHealthGraphRoute.toObjectNavigationRoute()
-        override val startDestinationRoute get() = PasswordHealthRoute.toObjectNavigationRoute()
-        override val testTag get() = "PasswordHealthTab"
         override val notificationCount get() = 0
     }
 

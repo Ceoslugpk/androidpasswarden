@@ -282,11 +282,6 @@ enum class Settings(
         vectorIconRes = BitwardenDrawable.ic_paintbrush,
         testTag = "AppearanceSettingsButton",
     ),
-    AUTHENTICATOR(
-        text = BitwardenString.authenticator.asText(),
-        vectorIconRes = BitwardenDrawable.ic_shield_check,
-        testTag = "AuthenticatorSettingsButton",
-    ),
     ORGANIZATIONS(
         text = BitwardenString.organizations.asText(),
         vectorIconRes = BitwardenDrawable.ic_folder,

@@ -28,7 +28,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 private const val AUTHENTICATOR_BRIDGE_SERVICE_CLASS =
-    "com.x8bit.passdevil.data.platform.service.AuthenticatorBridgeService"
+    "com.x8bit.bitwarden.data.platform.service.AuthenticatorBridgeService"
 
 /**
  * Default implementation of [AuthenticatorBridgeManager].

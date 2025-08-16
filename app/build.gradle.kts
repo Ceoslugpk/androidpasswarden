@@ -52,7 +52,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.x8bit.passdevil"
+        applicationId = "com.x8bit.bitwarden"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.appVersionCode.get().toInt()
@@ -62,7 +62,7 @@ android {
 
         // Set the base archive name for publishing purposes. This is used to derive the APK and AAB
         // artifact names when uploading to Firebase and Play Store.
-        base.archivesName = "com.x8bit.passdevil"
+        base.archivesName = "com.x8bit.bitwarden"
 
         buildConfigField(
             type = "String",

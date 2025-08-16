@@ -132,7 +132,6 @@
     <string name="options">Options</string>
     <string name="other">Other</string>
     <string name="password_generator">Password generator</string>
-    <string name="password_health">Password Health</string>
     <string name="password_hint">Password hint</string>
     <string name="password_hint_alert">We\'ve sent you an email with your master password hint.</string>
     <string name="password_override_alert">Are you sure you want to overwrite the current password?</string>

@@ -34,8 +34,6 @@ import com.x8bit.bitwarden.ui.platform.feature.vaultunlockednavbar.model.VaultUn
 import com.x8bit.bitwarden.ui.tools.feature.generator.generatorGraph
 import com.x8bit.bitwarden.ui.tools.feature.generator.navigateToGeneratorGraph
 import com.x8bit.bitwarden.ui.tools.feature.send.addedit.AddEditSendRoute
-import com.x8bit.bitwarden.ui.tools.feature.passwordhealth.navigateToPasswordHealthGraph
-import com.x8bit.bitwarden.ui.tools.feature.passwordhealth.passwordHealthGraph
 import com.x8bit.bitwarden.ui.tools.feature.send.navigateToSendGraph
 import com.x8bit.bitwarden.ui.tools.feature.send.sendGraph
 import com.x8bit.bitwarden.ui.tools.feature.send.viewsend.ViewSendRoute
@@ -104,9 +102,6 @@ fun VaultUnlockedNavBarScreen(
                         navigateToGeneratorGraph(navOptions = it)
                     }
                 }
-                VaultUnlockedNavBarEvent.NavigateToPasswordHealthScreen -> {
-                    navController.navigateToPasswordHealthGraph()
-                }
 
                 VaultUnlockedNavBarEvent.Shortcut.NavigateToSettingsScreen,
                 VaultUnlockedNavBarEvent.NavigateToSettingsScreen,
@@ -136,9 +131,6 @@ fun VaultUnlockedNavBarScreen(
         navigateToPasswordHistory = onNavigateToPasswordHistory,
         generatorTabClickedAction = remember(viewModel) {
             { viewModel.trySendAction(VaultUnlockedNavBarAction.GeneratorTabClick) }
-        },
-        passwordHealthTabClickedAction = remember(viewModel) {
-            { viewModel.trySendAction(VaultUnlockedNavBarAction.PasswordHealthTabClick) }
         },
         sendTabClickedAction = remember(viewModel) {
             { viewModel.trySendAction(VaultUnlockedNavBarAction.SendTabClick) }
@@ -170,7 +162,6 @@ private fun VaultUnlockedNavBarScaffold(
     vaultTabClickedAction: () -> Unit,
     sendTabClickedAction: () -> Unit,
     generatorTabClickedAction: () -> Unit,
-    passwordHealthTabClickedAction: () -> Unit,
     settingsTabClickedAction: () -> Unit,
     navigateToVaultAddItem: (args: VaultAddEditArgs) -> Unit,
     onNavigateToVaultItem: (args: VaultItemArgs) -> Unit,
@@ -203,7 +194,6 @@ private fun VaultUnlockedNavBarScaffold(
             contentDescriptionRes = state.vaultNavBarContentDescriptionRes,
         ),
         VaultUnlockedNavBarTab.Send,
-        VaultUnlockedNavBarTab.PasswordHealth,
         VaultUnlockedNavBarTab.Generator,
         VaultUnlockedNavBarTab.Settings(state.notificationState.settingsTabNotificationCount),
     )
@@ -217,7 +207,6 @@ private fun VaultUnlockedNavBarScaffold(
             onNavigationClick = { navigationItem ->
                 when (navigationItem) {
                     VaultUnlockedNavBarTab.Generator -> generatorTabClickedAction()
-                    VaultUnlockedNavBarTab.PasswordHealth -> passwordHealthTabClickedAction()
                     VaultUnlockedNavBarTab.Send -> sendTabClickedAction()
                     is VaultUnlockedNavBarTab.Settings -> settingsTabClickedAction()
                     is VaultUnlockedNavBarTab.Vault -> vaultTabClickedAction()
@@ -260,9 +249,6 @@ private fun VaultUnlockedNavBarScaffold(
             generatorGraph(
                 onNavigateToPasswordHistory = { navigateToPasswordHistory() },
                 onDimNavBarRequest = { shouldDim -> shouldDimNavBar = shouldDim },
-            )
-            passwordHealthGraph(
-                onNavigateBack = { navController.popBackStack() },
             )
             settingsGraph(
                 navController = navController,
